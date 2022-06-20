@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Data {
 
-    String path;
+    private final String path;
 
 
     public Data(String path) {
@@ -20,8 +20,7 @@ public class Data {
             if(login.equals(line.split(";")[0]) && haslo.equals(line.split(";")[1]))
                 return new User(line.split(";")[0],line.split(";")[1],Double.parseDouble(line.split(";")[2]));
         }
-        User returnUser = null;
-        return returnUser;
+        return null;
     }
 
     public void writeFile(User user) throws IOException {
@@ -35,6 +34,7 @@ public class Data {
     }
 
     public void updateFile(User user) throws IOException {
+
         File file = new File(path);
         file.createNewFile();
         FileReader fileReader = new FileReader(path);

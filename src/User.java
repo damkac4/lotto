@@ -5,12 +5,16 @@ public class User {
     private String login;
     private String password;
     private double balance;
-    final private Data data = new Data("dB.txt");
+    private double won;
+    private double lost;
+    private final Data data = new Data("dB.txt");
 
-    public User(String login, String password, double balance) {
+    public User(String login, String password, double balance, double won, double lost) {
         this.login = login;
         this.password = password;
         this.balance = balance;
+        this.won = won;
+        this.lost = lost;
     }
 
     public boolean signIn() throws IOException {
@@ -31,9 +35,9 @@ public class User {
             tempPassword = input.nextLine();
             data.writeFile(new User(tempLogin, tempPassword, 100));
 
-            setLogin(tempLogin);
-            setPassword(tempPassword);
-            setBalance(100);
+            this.setLogin(tempLogin);
+            this.setPassword(tempPassword);
+            this.setBalance(100);
 
             return true;
         }
@@ -63,9 +67,10 @@ public class User {
                 System.out.println("Wrong password");
                 return false;
             }else {
-                setLogin(user.login);
-               setPassword(user.password);
-               setBalance(user.balance);
+
+                this.setLogin(user.login);
+                this.setPassword(user.password);
+                this.setBalance(user.balance);
 
                 return true;
 
@@ -77,8 +82,7 @@ public class User {
 
     public void updateUser() throws IOException {
 
-        User user = new User(this.login,this.password,this.balance);
-        data.updateFile(user);
+        data.updateFile(new User(this.login,this.password,this.balance));
     }
 
 
