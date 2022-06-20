@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ public class Lotto {
         this.reward = reward;
     }
 
-    public Lotto() {
+    public Lotto() throws IOException {
         numbersChoosen = new ArrayList<>();
         numbersRandom = new ArrayList<>();
         yourNumbers();
@@ -62,14 +63,14 @@ public class Lotto {
     }
 
 
-    public void check(){
+    public void check() throws IOException {
         int checked = 0;
 
         for (int i = 0; i < 6; i++) if (numbersChoosen.contains(numbersRandom.get(i))) checked++;
 
         System.out.println("\nNumbers hit: "+ checked);
         System.out.println("Won: "+ checked * 10+" cebulions");
-
+        System.in.read();
         this.setReward(checked * 10);
     }
 
